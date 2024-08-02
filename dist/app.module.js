@@ -29,10 +29,19 @@ let AppModule = class AppModule {
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [usuario_module_1.UsuarioModule, cliente_module_1.ClienteModule, nomenclatura_module_1.NomenclaturaModule, resultado_module_1.ResultadoModule, indicaciones_module_1.IndicacionesModule, autenticacion_paciente_module_1.AutenticacionPacienteModule, autenticacion_administrativos_module_1.AutenticacionAdministrativosModule, sist_turnos_module_1.SistTurnosModule, correos_module_1.CorreosModule,
+        imports: [
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
             }),
+            usuario_module_1.UsuarioModule,
+            cliente_module_1.ClienteModule,
+            nomenclatura_module_1.NomenclaturaModule,
+            resultado_module_1.ResultadoModule,
+            indicaciones_module_1.IndicacionesModule,
+            autenticacion_paciente_module_1.AutenticacionPacienteModule,
+            autenticacion_administrativos_module_1.AutenticacionAdministrativosModule,
+            sist_turnos_module_1.SistTurnosModule,
+            correos_module_1.CorreosModule,
             upload_file_module_1.UploadFileModule,
             imapflow_correos_module_1.ImapflowCorreosModule,
         ],

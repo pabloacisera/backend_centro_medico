@@ -17,10 +17,19 @@ import { ImapflowCorreosModule } from './imapflow-correos/imapflow-correos.modul
 import { NotificacionGateway } from './notificacion-socket/notificacion.gateway';
 
 @Module({
-  imports: [UsuarioModule, ClienteModule, NomenclaturaModule, ResultadoModule, IndicacionesModule, AutenticacionPacienteModule, AutenticacionAdministrativosModule, SistTurnosModule, CorreosModule,
+  imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    UsuarioModule, 
+    ClienteModule, 
+    NomenclaturaModule, 
+    ResultadoModule, 
+    IndicacionesModule, 
+    AutenticacionPacienteModule, 
+    AutenticacionAdministrativosModule, 
+    SistTurnosModule, 
+    CorreosModule,
     UploadFileModule,
     ImapflowCorreosModule,
   ],
