@@ -27,7 +27,7 @@ export declare class SistTurnosController {
         clienteId: number;
         userId: number;
     }[]>;
-    remove(id: string): import(".prisma/client").Prisma.Prisma__TurnoClient<{
+    remove(id: string): import("@prisma/client").Prisma.Prisma__TurnoClient<{
         id: number;
         fecha: Date;
         clienteId: number;

@@ -53,7 +53,7 @@ export declare class SistTurnosService {
         clienteId: number;
         userId: number;
     }[]>;
-    remove(id: number): import(".prisma/client").Prisma.Prisma__TurnoClient<{
+    remove(id: number): import("@prisma/client").Prisma.Prisma__TurnoClient<{
         id: number;
         fecha: Date;
         clienteId: number;
