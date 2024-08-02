@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id           Int          @id @default(autoincrement())
+  rol          String
+  area         String
+  nombre       String
+  email        String       @unique
+  password     String
+  clientes     Cliente[]
+  indicaciones Indicacion[]
+  Turnos       Turno[]
+}
+
+model Cliente {
+  id              Int         @id @default(autoincrement())
+  protocolo       Int         @unique
+  nombre          String
+  dni             String
+  nacimiento      DateTime
+  edad            Int
+  direccion       String
+  localidad       String
+  telefono        String
+  email           String      @unique
+  seguridadSocial String
+  obs             String?
+  userId          Int
+  createdAt       DateTime    @default(now())
+  presente        Boolean     @default(false)
+  usuario         Usuario     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  files           File[]
+  resultados      Resultado[]
+  Turnos          Turno[]
+
+  @@index([userId])
+}
+
+model Nomenclatura {
+  id            Int    @id @default(autoincrement())
+  codigo        Int
+  determinacion String
+  unidadBase    Int
+}
+
+model Resultado {
+  id            Int     @id @default(autoincrement())
+  codigo        Int
+  determinacion String
+  unidadBase    Int
+  valorTotal    Float
+  clienteId     Int
+  resultado     Float
+  cliente       Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+}
+
+model Indicacion {
+  id      Int     @id @default(autoincrement())
+  titulo  String
+  texto   String
+  userId  Int
+  usuario Usuario @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Turno {
+  id        Int      @id @default(autoincrement())
+  fecha     DateTime
+  clienteId Int
+  userId    Int
+  Cliente   Cliente  @relation(fields: [clienteId], references: [id])
+  Usuario   Usuario  @relation(fields: [userId], references: [id])
+
+  @@map("turnos")
+}
+
+model File {
+  id        Int      @id @default(autoincrement())
+  filename  String
+  path      String
+  mimeType  String
+  size      Int
+  createdAt DateTime @default(now())
+  clienteId Int
+  cliente   Cliente  @relation(fields: [clienteId], references: [id])
+
+  @@index([clienteId])
+}
