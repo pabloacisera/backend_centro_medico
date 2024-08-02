@@ -1,24 +1,24 @@
-# Usa una imagen base de Node.js 21
+# Usa una imagen base de Node.js
 FROM node:21
 
-# Establece el directorio de trabajo en la imagen
+# Configura el directorio de trabajo
 WORKDIR /usr/src/app
 
-# Copia los archivos package.json y package-lock.json
+# Copia los archivos de configuración de npm
 COPY backend/package*.json ./
 
 # Instala las dependencias
 RUN npm install
 
-# Copia el resto de los archivos del proyecto
+# Copia el código fuente del backend
 COPY backend/src ./src
+
+# Copia los archivos de configuración de TypeScript
 COPY backend/tsconfig*.json ./
 
-# Compila el proyecto
-RUN npm run build
-
-# Exponer el puerto que la aplicación usará (esto es informativo)
+# Expon el puerto en el que la aplicación escuchará
 EXPOSE 3000
 
-# Comando para iniciar la aplicación
-CMD ["npm", "run", "start:prod"]
+# Comando para ejecutar la aplicación
+CMD ["npm", "start"]
+
