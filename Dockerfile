@@ -16,9 +16,10 @@ COPY backend/src ./src
 # Copia los archivos de configuración de TypeScript
 COPY backend/tsconfig*.json ./
 
-# Expon el puerto en el que la aplicación escuchará
+# Expone el puerto en el que la aplicación escuchará
 EXPOSE 3000
 
 # Comando para ejecutar la aplicación
 CMD ["npm", "start"]
+
 
