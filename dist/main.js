@@ -8,7 +8,7 @@ dotenv.config();
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.use(cors({
-        origin: 'http://localhost:4200',
+        origin: process.env.FRONTEND_URL,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         credentials: true,
     }));
