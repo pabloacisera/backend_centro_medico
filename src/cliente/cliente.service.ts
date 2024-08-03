@@ -49,7 +49,7 @@ export class ClienteService {
   }
 
   async findAllformAdmin() {
-    return this.prisma.cliente.findMany()
+    return this.prisma.cliente.findMany();
   }
 
   async getClientsByIds(ids: number[]): Promise<any[]> {
