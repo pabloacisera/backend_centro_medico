@@ -8,8 +8,8 @@ export class ImapService {
 
   constructor() {
     const imapOptions: Imap.ImapOptions = {
-      user: 'software.medilink.business@gmail.com',
-      password: 'rgab zkky zsej pgci',
+      user: process.env.IMAPFLOW_USER,
+      password: process.env.IMAPFLOW_PASSWORD,
       host: 'imap.gmail.com',
       port: 993,
       tls: true,
