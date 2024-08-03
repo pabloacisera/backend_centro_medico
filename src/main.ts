@@ -20,6 +20,8 @@ async function bootstrap() {
     }),
   );
 
+
+  console.log('Este es la ruta del frontend: ', process.env.FRONTEND)
   app.setGlobalPrefix('api/v2');
   await app.listen(port);
 }
