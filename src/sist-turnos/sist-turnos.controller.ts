@@ -22,8 +22,8 @@ export class SistTurnosController {
   }
 
   @Get()
-  obtenerTurnos(@Query('userId') userId: number) {
-    return this.sistTurnosService.obtenerTurnosPorUsuarioId(userId);
+  obtenerTurnos() {
+    return this.sistTurnosService.obtenerTurnos();
   }
 
   @Get(':userId/mis_turnos')

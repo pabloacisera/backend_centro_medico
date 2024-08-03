@@ -59,12 +59,7 @@ export class SistTurnosService {
 
 
   async obtenerTurnos() {
-    return this.prisma.turno.findMany({
-      include: {
-        Cliente: true,
-        Usuario: true,
-      },
-    });
+    return this.prisma.turno.findMany();
   }
 
   async obtenerTurnosPorUsuarioId(userId: number) {

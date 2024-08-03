@@ -36,11 +36,6 @@ export class ClienteController {
     return this.clienteService.encontrarClienteById(idNumber);
   }
 
-  @Get('all_for_admin')
-  findAllForAdmin() {
-    return this.clienteService.findAllformAdmin()
-  }
-
   @Post('find-by-ids')
   async getClientsByIds(@Body('ids') ids: number[]) {
     return this.clienteService.getClientsByIds(ids);
