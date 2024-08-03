@@ -36,7 +36,7 @@ export class ClienteController {
     return this.clienteService.encontrarClienteById(idNumber);
   }
 
-  @Get('forAdmin')
+  @Get()
   findAllForAdmin() {
     return this.clienteService.findAllformAdmin()
   }

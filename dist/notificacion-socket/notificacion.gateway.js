@@ -42,7 +42,7 @@ __decorate([
 exports.NotificacionGateway = NotificacionGateway = __decorate([
     (0, websockets_1.WebSocketGateway)({
         cors: {
-            origin: 'http://localhost:4200',
+            origin: 'https://frontend-centro-medico-v2.onrender.com',
             methods: ['GET', 'POST'],
             credentials: true
         }
