@@ -48,6 +48,10 @@ export class ClienteService {
     });
   }
 
+  async getAllClient() {
+    return this.prisma.cliente.findMany()
+  }
+
   async getClientsByIds(ids: number[]): Promise<any[]> {
     return this.prisma.cliente.findMany({
       where: {

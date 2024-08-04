@@ -26,6 +26,11 @@ export class ClienteController {
   }
 
   @Get()
+  getAllClient() {
+    return this.clienteService.getAllClient()
+  }
+
+  @Get()
   findAll(@Query('userId') userId: number) {
     return this.clienteService.findAll(Number(userId));
   }
