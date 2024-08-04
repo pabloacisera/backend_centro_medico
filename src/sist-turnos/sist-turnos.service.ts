@@ -17,13 +17,10 @@ export class SistTurnosService {
     const fechaInicioDelDia = new Date(fecha.toISOString().split('T')[0] + 'T00:00:00.000Z');
     const fechaFinDelDia = new Date(fechaInicioDelDia.getTime() + 24 * 60 * 60 * 1000); // Fin del día
   
-    // Buscar si hay algún turno en el mismo día
+    // Buscar si hay algún turno en la misma fecha y hora exacta
     const turnoExistente = await this.prisma.turno.findFirst({
       where: {
-        fecha: {
-          gte: fechaInicioDelDia,
-          lt: fechaFinDelDia,
-        },
+        fecha: fecha,
       },
     });
   
@@ -44,7 +41,6 @@ export class SistTurnosService {
       throw new InternalServerErrorException('Error al crear el turno');
     }
   }
-  
   
   async obtenerTurnos() {
     return this.prisma.turno.findMany();
