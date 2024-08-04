@@ -12,24 +12,25 @@ export class SistTurnosService {
 
   async crearTurno(data: { fecha: string, clienteId: number, userId: number }) {
     const fecha = new Date(data.fecha);
-
-    // Extraer la fecha en formato YYYY-MM-DD para comparar solo la parte de la fecha
-    const fechaSolo = fecha.toISOString().split('T')[0];
-
-    // Buscar turnos con la misma fecha (sin tener en cuenta la hora exacta)
+  
+    // Obtener la fecha sin la hora para una búsqueda más sencilla
+    const fechaInicioDelDia = new Date(fecha.toISOString().split('T')[0] + 'T00:00:00.000Z');
+    const fechaFinDelDia = new Date(fechaInicioDelDia.getTime() + 24 * 60 * 60 * 1000); // Fin del día
+  
+    // Buscar si hay algún turno en el mismo día
     const turnoExistente = await this.prisma.turno.findFirst({
       where: {
         fecha: {
-          gte: new Date(fechaSolo + 'T00:00:00.000Z'),
-          lt: new Date(fechaSolo + 'T23:59:59.999Z'),
+          gte: fechaInicioDelDia,
+          lt: fechaFinDelDia,
         },
       },
     });
-
+  
     if (turnoExistente) {
-      throw new ConflictException('Turno no disponible');
+      return { mensaje: 'Turno no disponible', sugerencias: [] };
     }
-
+  
     try {
       return await this.prisma.turno.create({
         data: {
@@ -40,10 +41,10 @@ export class SistTurnosService {
       });
     } catch (error) {
       console.error('Error al crear el turno:', error);
-      throw new Error('Error al crear el turno');
+      throw new InternalServerErrorException('Error al crear el turno');
     }
   }
-
+  
   async obtenerTurnos() {
     return this.prisma.turno.findMany();
   }
