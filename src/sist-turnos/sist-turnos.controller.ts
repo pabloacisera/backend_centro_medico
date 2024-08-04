@@ -29,7 +29,7 @@ export class SistTurnosController {
   @Get(':userId/mis_turnos')
   async obtenerTurnosPorUserId(@Param('userId') userId: number) {
     return this.sistTurnosService.obtenerTurnosPorUsuarioId(Number(userId));
-  } 
+  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

@@ -45,6 +45,7 @@ export class SistTurnosService {
     }
   }
   
+  
   async obtenerTurnos() {
     return this.prisma.turno.findMany();
   }
