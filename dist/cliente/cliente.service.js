@@ -51,7 +51,7 @@ let ClienteService = class ClienteService {
             where: { userId },
         });
     }
-    async findAllformAdmin() {
+    async getAllClient() {
         return this.prisma.cliente.findMany();
     }
     async getClientsByIds(ids) {

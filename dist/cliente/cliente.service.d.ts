@@ -38,7 +38,7 @@ export declare class ClienteService {
         createdAt: Date;
         presente: boolean;
     }[]>;
-    findAllformAdmin(): Promise<{
+    getAllClient(): Promise<{
         id: number;
         protocolo: number;
         nombre: string;

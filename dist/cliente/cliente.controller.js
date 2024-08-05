@@ -24,15 +24,15 @@ let ClienteController = class ClienteController {
     create(createClienteDto) {
         return this.clienteService.create(createClienteDto);
     }
+    getAllClient() {
+        return this.clienteService.getAllClient();
+    }
     findAll(userId) {
         return this.clienteService.findAll(Number(userId));
     }
     async encontrarClienteById(id) {
         const idNumber = +id;
         return this.clienteService.encontrarClienteById(idNumber);
-    }
-    findAllForAdmin() {
-        return this.clienteService.findAllformAdmin();
     }
     async getClientsByIds(ids) {
         return this.clienteService.getClientsByIds(ids);
@@ -54,6 +54,12 @@ __decorate([
 ], ClienteController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], ClienteController.prototype, "getAllClient", null);
+__decorate([
+    (0, common_1.Get)(),
     __param(0, (0, common_1.Query)('userId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -66,12 +72,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ClienteController.prototype, "encontrarClienteById", null);
-__decorate([
-    (0, common_1.Get)('all_for_admin'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], ClienteController.prototype, "findAllForAdmin", null);
 __decorate([
     (0, common_1.Post)('find-by-ids'),
     __param(0, (0, common_1.Body)('ids')),

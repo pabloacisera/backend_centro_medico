@@ -33,8 +33,8 @@ let SistTurnosController = class SistTurnosController {
             }
         }
     }
-    obtenerTurnos(userId) {
-        return this.sistTurnosService.obtenerTurnosPorUsuarioId(userId);
+    obtenerTurnos() {
+        return this.sistTurnosService.obtenerTurnos();
     }
     async obtenerTurnosPorUserId(userId) {
         return this.sistTurnosService.obtenerTurnosPorUsuarioId(Number(userId));
@@ -53,9 +53,8 @@ __decorate([
 ], SistTurnosController.prototype, "crearTurno", null);
 __decorate([
     (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)('userId')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], SistTurnosController.prototype, "obtenerTurnos", null);
 __decorate([

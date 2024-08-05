@@ -18,9 +18,15 @@ let SistTurnosService = class SistTurnosService {
     }
     async crearTurno(data) {
         const fecha = new Date(data.fecha);
-        const turnoExistente = await this.prisma.turno.findFirst({ where: { fecha } });
+        const fechaInicioDelDia = new Date(fecha.toISOString().split('T')[0] + 'T00:00:00.000Z');
+        const fechaFinDelDia = new Date(fechaInicioDelDia.getTime() + 24 * 60 * 60 * 1000);
+        const turnoExistente = await this.prisma.turno.findFirst({
+            where: {
+                fecha: fecha,
+            },
+        });
         if (turnoExistente) {
-            throw new common_1.ConflictException('Turno no disponible');
+            return { mensaje: 'Turno no disponible', sugerencias: [] };
         }
         try {
             return await this.prisma.turno.create({
@@ -33,35 +39,11 @@ let SistTurnosService = class SistTurnosService {
         }
         catch (error) {
             console.error('Error al crear el turno:', error);
-            throw new Error('Error al crear el turno');
+            throw new common_1.InternalServerErrorException('Error al crear el turno');
         }
-        const turnoAnterior = await this.prisma.turno.findFirst({
-            where: { fecha: new Date(fecha.getTime() - 30 * 60000) }
-        });
-        const turnoPosterior = await this.prisma.turno.findFirst({
-            where: { fecha: new Date(fecha.getTime() + 30 * 60000) },
-        });
-        const sugerencias = [];
-        if (!turnoAnterior) {
-            sugerencias.push(new Date(fecha.getTime() - 30 * 60000));
-        }
-        if (!turnoPosterior) {
-            sugerencias.push(new Date(fecha.getTime() + 30 * 60000));
-        }
-        if (sugerencias.length > 0) {
-            return { mensaje: 'Turno no disponible', sugerencias };
-        }
-        return this.prisma.turno.create({
-            data: { fecha, clienteId: data.clienteId, userId: data.userId }
-        });
     }
     async obtenerTurnos() {
-        return this.prisma.turno.findMany({
-            include: {
-                Cliente: true,
-                Usuario: true,
-            },
-        });
+        return this.prisma.turno.findMany();
     }
     async obtenerTurnosPorUsuarioId(userId) {
         try {

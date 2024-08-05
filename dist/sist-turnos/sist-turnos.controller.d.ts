@@ -15,7 +15,7 @@ export declare class SistTurnosController {
         mensaje: string;
         sugerencias: any[];
     }>;
-    obtenerTurnos(userId: number): Promise<{
+    obtenerTurnos(): Promise<{
         id: number;
         fecha: Date;
         clienteId: number;

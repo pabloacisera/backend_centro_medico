@@ -21,6 +21,23 @@ export declare class ClienteController {
         createdAt: Date;
         presente: boolean;
     }>;
+    getAllClient(): Promise<{
+        id: number;
+        protocolo: number;
+        nombre: string;
+        dni: string;
+        nacimiento: Date;
+        edad: number;
+        direccion: string;
+        localidad: string;
+        telefono: string;
+        email: string;
+        seguridadSocial: string;
+        obs: string | null;
+        userId: number;
+        createdAt: Date;
+        presente: boolean;
+    }[]>;
     findAll(userId: number): Promise<{
         id: number;
         protocolo: number;
@@ -55,23 +72,6 @@ export declare class ClienteController {
         createdAt: Date;
         presente: boolean;
     }>;
-    findAllForAdmin(): Promise<{
-        id: number;
-        protocolo: number;
-        nombre: string;
-        dni: string;
-        nacimiento: Date;
-        edad: number;
-        direccion: string;
-        localidad: string;
-        telefono: string;
-        email: string;
-        seguridadSocial: string;
-        obs: string | null;
-        userId: number;
-        createdAt: Date;
-        presente: boolean;
-    }[]>;
     getClientsByIds(ids: number[]): Promise<any[]>;
     update(id: string, updateClienteDto: UpdateClienteDto, userId: number): Promise<{
         id: number;

@@ -14,7 +14,6 @@ import { ConfigModule } from '@nestjs/config';
 import { CorreosModule } from "./correos-backend/correos.module";
 import { UploadFileModule } from './upload-file/upload-file.module';
 import { ImapflowCorreosModule } from './imapflow-correos/imapflow-correos.module';
-import { NotificacionGateway } from './notificacion-socket/notificacion.gateway';
 
 @Module({
   imports: [
@@ -34,6 +33,6 @@ import { NotificacionGateway } from './notificacion-socket/notificacion.gateway'
     ImapflowCorreosModule,
   ],
   controllers: [AppController],
-  providers: [AppService, PrismaService, NotificacionGateway],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}

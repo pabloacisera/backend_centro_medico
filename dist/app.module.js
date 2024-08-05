@@ -23,7 +23,6 @@ const config_1 = require("@nestjs/config");
 const correos_module_1 = require("./correos-backend/correos.module");
 const upload_file_module_1 = require("./upload-file/upload-file.module");
 const imapflow_correos_module_1 = require("./imapflow-correos/imapflow-correos.module");
-const notificacion_gateway_1 = require("./notificacion-socket/notificacion.gateway");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -46,7 +45,7 @@ exports.AppModule = AppModule = __decorate([
             imapflow_correos_module_1.ImapflowCorreosModule,
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, prisma_service_service_1.PrismaService, notificacion_gateway_1.NotificacionGateway],
+        providers: [app_service_1.AppService, prisma_service_service_1.PrismaService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
