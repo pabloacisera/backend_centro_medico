@@ -51,12 +51,12 @@ export class MailService {
             subject,
             text
         };
-
+    
         try {
             await this.transporter.sendMail(mailOptions);
             console.log(`Notificación de turno enviada a: ${to}`);
         } catch (error) {
             console.error(`Error al enviar notificación de turno: ${error.message}`);
         }
-    }
+    }    
 }
