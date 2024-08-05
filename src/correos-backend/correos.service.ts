@@ -46,12 +46,12 @@ export class MailService {
 
     async sendMailNotification(to: string, subject: string, text: string) {
         const mailOptions: any = {
-            from: process.env.MAIL_USER,
+            from: process.env.NODEMAILER_USER,
             to,
             subject,
             text
         };
-    
+
         try {
             await this.transporter.sendMail(mailOptions);
             console.log(`Notificación de turno enviada a: ${to}`);

@@ -21,14 +21,14 @@ export class MailController {
 
     @Post('notificar-turno')
     async notificarTurno(
-        @Body('to') to: string,
+        @Body('clienteEmail') clienteEmail: string,
         @Body('clienteNombre') clienteNombre: string,
-        @Body('nombreProfesional') nombreProfesional: string,
+        @Body('profesionalNombre') profesionalNombre: string,
         @Body('fechaTurno') fechaTurno: string
     ) {
-        const subject = 'Recordatorio de Turno Médico';
-        const text = `Estimado paciente.-\n\nEste es un correo automático para notificarle la adjudicación de un turno médico con el profesional ${nombreProfesional} para el día ${fechaTurno}. Aguardamos su presencia. No responda este correo. Sin otro motivo, Saluda Atte, Administración Centro Médico`;
-        await this.mailService.sendMailNotification(to, subject, text);
+        const subject = 'Recordatorio de Turno';
+        const text = `Estimado/a ${clienteNombre},\n\nEste es un correo automático para notificarle la adjudicación de un turno médico con el profesional ${profesionalNombre} para el día ${fechaTurno}. Aguardamos su presencia. No responda este correo.\n\nSin otro motivo, saluda atentamente,\nAdministración Centro Médico`;
+        await this.mailService.sendMailNotification(clienteEmail, subject, text);
         return { message: 'Notificación de turno enviada!' };
     }
 }
