@@ -19,11 +19,10 @@ export class NotificacionGateway implements OnGatewayConnection, OnGatewayDiscon
         console.log('Socket desconectado');
     }
 
-    @SubscribeMessage('nombre-paciente')
-    handleNombrePaciente(
-        @MessageBody() nombre: string
-    ): void {
-        console.log('Nombre del paciente: ', nombre);
-        this.server.emit('mensaje-event', `${nombre}`);
+    @SubscribeMessage('notificar-presencia')
+    handleNotificarPresencia(@MessageBody() id: number): void {
+        console.log('Notificación de presencia para cliente ID:', id);
+        this.server.emit('notificacion-presencia', id);
     }
 }
+
